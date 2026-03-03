@@ -1,0 +1,194 @@
+@mixin flex-view($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  @if $align==1 {
+    align-items: center;
+  }
+  @if $justify==1 {
+    justify-content: center;
+  }
+}
+
+.notif-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & > span {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #555;
+    padding: 1rem 0;
+  }
+  ul {
+    padding: 5px 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 35vh;
+    max-width: 40vh;
+    // background-color: #fafafa;
+    border: 1px solid transparent;
+    border-color: #eee transparent;
+    min-height: 200px;
+    max-height: 40vh;
+    overflow-y: auto;
+    .notif-none {
+      padding: 10px;
+      text-align: center;
+      animation: popup 0.2s;
+      span {
+        opacity: 0.3;
+        font-weight: bold;
+      }
+      img {
+        width: 100%;
+        opacity: 0.3;
+      }
+    }
+    li {
+      background: #fff;
+      text-align: start;
+      padding: 10px;
+      display: inline-flex;
+      margin: 5px 0;
+      border-radius: 3px;
+      box-shadow: 0 2px 3px rgba($color: #000000, $alpha: 0.1),
+        0 0 0 1px rgba($color: #000000, $alpha: 0.05);
+      animation: popup 0.4s forwards;
+      opacity: 0;
+      &:hover {
+        cursor: pointer;
+        background-color: #fafafa;
+        .notif-icon {
+          svg {
+            background-color: rgba($color: #000000, $alpha: 0.05);
+            // box-shadow: none;
+          }
+        }
+      }
+      .notif-icon {
+        svg {
+          padding: 5px;
+          border-radius: 50%;
+          background-color: #fff;
+          color: #2962ff;
+          // box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.1);
+          transition: 0.2s;
+        }
+      }
+      & > div {
+        display: flex;
+        flex-direction: column;
+        color: #aaa;
+        flex: 1;
+        padding: 3px 10px;
+        & > :first-child {
+          // font-weight: bold;
+          color: #000;
+        }
+      }
+    }
+  }
+  .notif-bottom {
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 5px 10px;
+    width: 100%;
+    // .bp4-button {
+    //   border-radius: 50%;
+    // }
+  }
+}
+.profile {
+  @include flex-view(column, 0, 0);
+  min-width: 10rem;
+  &-head {
+    @include flex-view(row, 0, 0);
+    margin: 1rem 2rem 1rem 1rem;
+    &-left {
+      cursor: pointer;
+      margin-right: 10px;
+      position: relative;
+      padding: 5px;
+      &:hover {
+        .edit-mask {
+          opacity: 1;
+        }
+      }
+
+      img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        // box-shadow: 0 5px 10px rgba($color: #000000, $alpha: 0.2);
+        border-radius: 50%;
+      }
+      .edit-mask {
+        @include flex-view(column, 1, 1);
+        position: absolute;
+        transition: 0.2s;
+        opacity: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        border-radius: 50%;
+        background-color: rgba($color: #fff, $alpha: 0.7);
+        .bp4-icon {
+          color: #000;
+          background-color: #fff;
+          padding: 5px;
+          border-radius: 50%;
+        }
+      }
+    }
+    &-right {
+      @include flex-view(column, 0, 0);
+      align-items: flex-start;
+      flex: 1;
+      // hr{
+      //   border: none;
+      //   border-top: 1px solid #ddd;
+      //   width: 100%;
+      // }
+      > span {
+        margin: 3px 0;
+      }
+      & > span:first-child {
+        font-weight: bold;
+        font-size: 1rem;
+        text-transform: capitalize;
+        i {
+          font-weight: 400;
+          color: #999;
+        }
+      }
+    }
+  }
+  &-body {
+    @include flex-view(column, 0, 0);
+    padding: 0;
+    li {
+      @include flex-view(row, 1, 0);
+      justify-content: space-between;
+      list-style-type: none;
+      padding: 10px 1rem;
+      .bp4-icon {
+        color: #ddd;
+      }
+      & > div {
+        .bp4-icon {
+          margin-right: 10px;
+          color: #424242;
+        }
+      }
+      &:hover {
+        background-color: #eee;
+        cursor: pointer;
+      }
+    }
+  }
+}

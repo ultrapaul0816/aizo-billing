@@ -1,0 +1,14 @@
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+
+ [context.production]
+  [context.production.environment]
+    REACT_APP_BASE_URL= "https://zapio-admin.com/api/pos"
+
+[context.staging]
+  [context.staging.environment]
+REACT_APP_BASE_URL="https://zapio-admin.com/api/test"
+
