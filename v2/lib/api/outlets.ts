@@ -1,7 +1,6 @@
-import { apiClient, apiV2Client, post } from "./client";
-import { getBrand } from "@/lib/utils";
+// MOCK MODE — replace with real API calls for production
+import * as mock from "@/lib/mock/api";
 import type {
-  ApiResponse,
   Category,
   Outlet,
   Product,
@@ -9,37 +8,33 @@ import type {
 } from "./types";
 
 export async function listOutlets(): Promise<Outlet[]> {
-  const brand = getBrand();
-  const res = await apiClient.get<ApiResponse<Outlet[]>>(`/outletmgmt/list/?brand=${brand}`);
-  return res.data.data;
+  return mock.listOutlets();
 }
 
 export async function toggleOutletStatus(body: Record<string, unknown>) {
-  return post<unknown>("/outletmgmt/IsOpen/", body);
+  return mock.toggleOutletStatus(body);
 }
 
 export async function listCategories(body: Record<string, unknown>): Promise<Category[]> {
-  return post<Category[]>("/outletmgmt/Categorylist/", body);
+  return mock.listCategories(body);
 }
 
 export async function listProducts(body: Record<string, unknown>): Promise<Product[]> {
-  return post<Product[]>("/outletmgmt/Productlist/", body);
+  return mock.listProducts(body);
 }
 
 export async function getRiders(body: Record<string, unknown>): Promise<Rider[]> {
-  return post<Rider[]>("/rider/outletwiserider/", body);
+  return mock.getRiders(body);
 }
 
 export async function assignRider(body: Record<string, unknown>) {
-  return post<unknown>("/rider/outletwiserider/assign/", body);
+  return mock.assignRider(body);
 }
 
 export async function getTax(body: Record<string, unknown>) {
-  const res = await apiV2Client.post<ApiResponse<unknown>>("/listing/tax/", body);
-  return res.data.data;
+  return mock.getTax(body);
 }
 
 export async function getCharges() {
-  const res = await apiClient.get<ApiResponse<unknown>>("/package/charge/");
-  return res.data.data;
+  return mock.getCharges();
 }
