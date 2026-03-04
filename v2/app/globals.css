@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+:root {
+  --font-display: 'General Sans', sans-serif;
+  --font-body: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --card-hover: #f1f5f9;
+  --muted: #64748b;
+  --muted-light: #94a3b8;
+
+  --success: #059669;
+  --success-light: #d1fae5;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --error: #e11d48;
+  --error-light: #ffe4e6;
+  --info: #2563eb;
+  --info-light: #dbeafe;
+
+  --zomato: #E23744;
+  --swiggy: #FC8019;
+  --direct: #7c3aed;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
